@@ -11,6 +11,9 @@ const INITIAL_STATE = {
             { type: 'cheese', amount: 0 },
             { type: 'meat', amount: 0 },
         ],
+        order: [],
+        orderLoading: true,
+        orderErr: false,
         totalPrice: 20,
         purchaseable:false
 }
@@ -62,9 +65,7 @@ export const reducer = (state=INITIAL_STATE, action ) =>{
                 { type: 'cheese', amount: 0 },
                 { type: 'meat', amount: 0 },
             ],
-            order: [],
-            orderLoading: true,
-            orderErr: false,
+            
             totalPrice: 20,
             purchaseable:false
         }
@@ -84,6 +85,12 @@ export const reducer = (state=INITIAL_STATE, action ) =>{
                 orderLoading:false,
                 
             }
+            case actionTypes.ORDER_LOAD_FAILED:
+                return {
+                    ...state,
+                    orderErr:true,
+                    orderLoading:false,
+                }
 
             default: return state;
         }

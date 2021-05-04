@@ -45,4 +45,7 @@ axios.get("https://burger-builder-64f2f-default-rtdb.firebaseio.com/orders.json"
 .then(response => {
     dispatch(loadOrders(response.data))
 })
+.catch(err => {
+    dispatch(orderLoadFailed())
+})
 }

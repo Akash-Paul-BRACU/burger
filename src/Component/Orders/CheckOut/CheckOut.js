@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import {connect}  from "react-redux"
 import {Button, Modal, ModalBody} from "reactstrap"
 import axios from "axios"
-import Spinner from '../../Spinner/Spinner'
+
 import { resetIngredients } from '../../../Redux/ActionCreator'
+import Spinner from '../../Spinner/Spinner'
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,

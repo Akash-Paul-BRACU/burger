@@ -20,9 +20,6 @@ const Header = () => {
                     <NavLink to="/orders" className="NavLink">Orders</NavLink>
                 </NavItem>
 
-                <NavItem>
-                    <NavLink to="/checkout" className="NavLink">CheckOut</NavLink>
-                </NavItem>
                 </Nav>
             </Navbar>
         </div>
