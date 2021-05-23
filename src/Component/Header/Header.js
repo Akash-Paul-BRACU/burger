@@ -42,7 +42,7 @@ const Header = (props) => {
     }
     return (
         <div className="Navigation">
-            <Navbar style={{backgroundColor: "#D70F64", height: "70px"}}>
+            <Navbar style={{backgroundColor: "#D70F64", height: "110px"}}>
                 <NavbarBrand href="/" className="mr-auto ml-md-5 Brand">
                     <img src={logo} style={{width:"80px"}} alt=""/>
                 </NavbarBrand>
