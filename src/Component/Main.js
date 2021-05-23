@@ -6,16 +6,28 @@ import Header from './Header/Header'
 import CheckOut from './Orders/CheckOut/CheckOut'
 import Orders from './Orders/Orders'
 import {connect} from "react-redux"
+import { authCheck } from '../Redux/AuthActionCreator'
+import { Component } from 'react'
+import { Logout } from './Auth/Logout'
 
 const mapStateToProps = state => {
     return{
         token: state.token
     }
 }
-const Main = (props) => {
 
-    let routes = null;
-    if(props.token === null){
+const mapDispatchToProps = dispatch => {
+    return{
+        authCheck: () => dispatch(authCheck()),
+    }
+}
+class Main extends Component {
+    componentDidMount(){
+        this.props.authCheck();
+    }
+    render () {
+        let routes = null;
+    if(this.props.token === null){
             routes = (
                 <Switch>
                     <Route path="/login" exact component={Auth} />
@@ -28,6 +40,7 @@ const Main = (props) => {
             <Switch>
                 <Route path="/orders" exact component={Orders} />
                 <Route path="/checkout" exact component={CheckOut} />
+                <Route path="/logout" exact component={Logout} />
                 <Route path="/" exact component={BurgerBuilder} />
             </Switch>
         )
@@ -43,4 +56,6 @@ const Main = (props) => {
     )
 }
 
-export default connect(mapStateToProps)(Main)
+    }
+    
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
