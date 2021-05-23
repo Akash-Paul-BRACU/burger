@@ -2,10 +2,19 @@ import React, { Component } from 'react'
 import {Formik} from "formik"
 import { auth } from '../../Redux/AuthActionCreator'
 import {connect} from 'react-redux';
+import Spinner from '../Spinner/Spinner';
+import { Alert } from 'reactstrap';
 
 const mapDispatchToProps = dispatch =>{
     return {
         auth: (email, password, mode) => dispatch(auth(email, password, mode))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        authLoading: state.authLoading,
+        authFailedMsg: state.authFailedMsg,
     }
 }
 export class Auth extends Component {
@@ -16,8 +25,16 @@ export class Auth extends Component {
         this.setState({mode: this.state.mode==="Sign Up"? "Login": "Sign Up"})
     }
     render() {
-        return (
-            <div>
+        let err =null;
+        if(this.props.authFailedMsg!==null){
+            err =<Alert color="danger">{this.props.authFailedMsg}</Alert>
+        }
+        let form = null;
+        if(this.props.authLoading){
+            form =<Spinner></Spinner>
+        }
+        else{
+            form = (
                 <Formik
                 
                 initialValues={
@@ -88,9 +105,16 @@ export class Auth extends Component {
                         </div>)}
 
                 </Formik>
+            )
+        }
+        return (
+            <div>
+                {err}
+                {form}
+                
             </div>
         )
     }
 }
 
-export default connect (null, mapDispatchToProps)(Auth)
+export default connect (mapStateToProps, mapDispatchToProps)(Auth)

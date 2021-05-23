@@ -3,17 +3,19 @@ import {Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import { logout } from '../../Redux/AuthActionCreator'
 
-const mapDispatchToProps = () => dispatch =>{
-    return{
+
+const mapDispatchToProps = dispatch => {
+    return {
         logout: () => dispatch(logout()),
     }
 }
+
 class Logout extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.logout();
     }
     render() {
-        return (  <Redirect to="/" /> )
+        return (<Redirect to="/" />)
     }
 }
 
